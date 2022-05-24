@@ -93,7 +93,7 @@ public class MainScene extends Scene {
 
         //location
         locationChoiceBox.getItems().addAll("Community College", "State College", "University of California", "Self Taught");
-
+        locationChoiceBox.getSelectionModel().select(0);
 
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
@@ -106,9 +106,6 @@ public class MainScene extends Scene {
         gridPane.add(datePicker, 1, 1);
 
         gridPane.add(genderLabel, 0, 2);
-        //gridPane.add(maleRadio, 1, 2);
-        //gridPane.add(femaleRadio, 2, 2);
-        //gridPane.add(nonBinaryRadio, 3, 2);
 
         //add hbox to gridpane
         gridPane.add(hBoxGen, 1, 2);
