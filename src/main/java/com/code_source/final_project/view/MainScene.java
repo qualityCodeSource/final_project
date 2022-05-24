@@ -106,12 +106,12 @@ public class MainScene extends Scene {
         gridPane.add(datePicker, 1, 1);
 
         gridPane.add(genderLabel, 0, 2);
-        gridPane.add(maleRadio, 1, 2);
-        gridPane.add(femaleRadio, 2, 2);
-        gridPane.add(nonBinaryRadio, 3, 2);
+        //gridPane.add(maleRadio, 1, 2);
+        //gridPane.add(femaleRadio, 2, 2);
+        //gridPane.add(nonBinaryRadio, 3, 2);
 
         //add hbox to gridpane
-        gridPane.add(hBoxGen, 0, 2);
+        gridPane.add(hBoxGen, 1, 2);
 
         gridPane.add(languagesLabel, 0, 3);
         gridPane.add(javaCheckBox, 1, 3);
