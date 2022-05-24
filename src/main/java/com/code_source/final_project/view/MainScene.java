@@ -14,6 +14,7 @@ import javafx.util.StringConverter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+//test
 public class MainScene extends Scene {
     //name
     private final Label nameLabel = new Label("NAME:");
@@ -38,8 +39,8 @@ public class MainScene extends Scene {
 
     //education
     private final Label educationLabel = new Label("EDUCATION:");
-    private final ListView<Object> edulist = new ListView<>();
-    private final ObservableList<Object> data = FXCollections.observableArrayList();
+    private final ListView<String> edulist = new ListView<>();
+    private final ObservableList<String> data = FXCollections.observableArrayList();
 
     //location
     private final Label locationLabel=new Label("LOCATION:");
@@ -164,20 +165,20 @@ public class MainScene extends Scene {
             String DOB = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
             String gender = "";
             if(groupGender.getSelectedToggle().equals(maleRadio))
-                gender += "MALE";
+                gender += "[MALE]";
             if(groupGender.getSelectedToggle().equals(femaleRadio))
-                gender += "FEMALE";
+                gender += "[FEMALE]";
             if(groupGender.getSelectedToggle().equals(nonBinaryRadio))
-                gender += "NON-BINARY";
+                gender += "[NON-BINARY]";
             String languages = "";
             if (javaCheckBox.isSelected())
-                languages+="JAVA ";
+                languages+="[JAVA]";
             if (cppCheckBox.isSelected())
-                languages+="C++ ";
+                languages+="[C++]";
             if (pythonCheckBox.isSelected())
-                languages+="Python ";
-            String education = "";
-            String location = locationChoiceBox.getSelectionModel().toString();
+                languages+="[Python]";
+            String education = edulist.getSelectionModel().getSelectedItems().toString();
+            String location = locationChoiceBox.getSelectionModel().getSelectedItem().toString();
             studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
             studentsLV.refresh();
         }catch(NullPointerException e){}

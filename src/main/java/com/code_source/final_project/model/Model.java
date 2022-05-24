@@ -11,7 +11,6 @@ public class Model {
 
     public static final String BINARY_FILE = "Students.dat";
 
-
     public static boolean binaryFileHasData()
     {
         File binaryFile = new File(BINARY_FILE);
