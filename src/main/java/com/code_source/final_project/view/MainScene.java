@@ -107,6 +107,7 @@ public class MainScene extends Scene {
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
 
+        //title label
         gridPane.add(titleLabel,0,0);
         //arranging all the nodes in the grid
         //0,0
