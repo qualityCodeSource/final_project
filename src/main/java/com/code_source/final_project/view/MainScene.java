@@ -17,6 +17,9 @@ import java.time.format.DateTimeFormatter;
 
 //test 1
 public class MainScene extends Scene {
+    //title text
+    private final Label titleLabel = new Label("SUPER DOPE JAVA PROGRAM 3000");
+
     //name
     private final Label nameLabel = new Label("NAME:");
     private final TextField nameText = new TextField();
@@ -61,7 +64,7 @@ public class MainScene extends Scene {
 
 
     public MainScene() {
-        super(new GridPane(), 800 ,800);
+        super(new GridPane(), 1250 ,1250);
 
         //gridpane
         GridPane gridPane=new GridPane();
@@ -104,42 +107,46 @@ public class MainScene extends Scene {
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
 
+        gridPane.add(titleLabel,0,0);
         //arranging all the nodes in the grid
-        gridPane.add(nameLabel, 0, 0);
-        gridPane.add(nameText, 1, 0);
+        //0,0
+        gridPane.add(nameLabel, 1, 1);
+        //1,0
+        gridPane.add(nameText, 2, 1);
 
-        gridPane.add(dobLabel, 0, 1);
-        gridPane.add(datePicker, 1, 1);
+        //0,1  1,1
+        gridPane.add(dobLabel, 1, 2);
+        gridPane.add(datePicker, 2, 1);
 
-        //add gen label
-        gridPane.add(genderLabel,0,2);
+        //add gen label  0,2
+        gridPane.add(genderLabel,1,3);
 
-        //add gen hbox
-        gridPane.add(hBoxGen, 1, 2);
+        //add gen hbox   1,2
+        gridPane.add(hBoxGen, 2, 3);
 
-        //add lang label
-        gridPane.add(languagesLabel, 0, 3);
+        //add lang label   0,3
+        gridPane.add(languagesLabel, 1, 4);
 
-        //add lang hbox
-        gridPane.add(hBoxLang, 1,3);
+        //add lang hbox    1,3
+        gridPane.add(hBoxLang, 2,4);
+        //0,4  1,4
+        gridPane.add(educationLabel, 1 ,5);
+        gridPane.add(edulist, 2, 5);
+        //0,5   1,5
+        gridPane.add(locationLabel, 1, 6);
+        gridPane.add(locationChoiceBox, 2, 6);
 
-        gridPane.add(educationLabel, 0 ,4);
-        gridPane.add(edulist, 1, 4);
-
-        gridPane.add(locationLabel, 0, 5);
-        gridPane.add(locationChoiceBox, 1, 5);
-
-        //register button
+        //register button   2,7
         buttonRegister.setOnAction(e -> addStudent());
-        gridPane.add(buttonRegister, 2, 7);
+        gridPane.add(buttonRegister, 3, 8);
 
-        //delete button
+        //delete button    3,7
         buttonDelete.setOnAction(e -> removeStudent());
-        gridPane.add(buttonDelete, 3, 7);
+        gridPane.add(buttonDelete, 4, 8);
 
-        //listview from binary file
-        studentsLV.setPrefSize(200, 300);
-        gridPane.add(studentsLV, 3, 1);
+        //listview from binary file    3,1
+        studentsLV.setPrefSize(350, 300);
+        gridPane.add(studentsLV, 4, 2);
 
         //NODE STYLE
         buttonRegister.setStyle("-fx-background-color:green; -fx-text-fill:white;");
@@ -151,7 +158,7 @@ public class MainScene extends Scene {
         locationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
 
         //setting the background color
-        gridPane.setStyle("-fx-background-color: linear-gradient(to right, brown, yellow)");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to top, red, yellow, green)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
