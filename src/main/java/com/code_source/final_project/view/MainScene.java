@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 //test 1
 public class MainScene extends Scene {
     //title text
-    private final Label titleLabel = new Label("SUPER DOPE JAVA PROGRAM 3000");
+    private final Label titleLabel = new Label("SUPER DOPE REGISTRATION FORM 3000");
 
     //name
     private final Label nameLabel = new Label("NAME:");
@@ -115,7 +115,7 @@ public class MainScene extends Scene {
 
         //0,1  1,1
         gridPane.add(dobLabel, 1, 2);
-        gridPane.add(datePicker, 2, 1);
+        gridPane.add(datePicker, 2, 2);
 
         //add gen label  0,2
         gridPane.add(genderLabel,1,3);
