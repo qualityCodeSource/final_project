@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
@@ -64,7 +65,8 @@ public class MainScene extends Scene {
 
         //gridpane
         GridPane gridPane=new GridPane();
-        gridPane.setVgap(10);
+
+        gridPane.setVgap(7);
         gridPane.setHgap(5);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
@@ -73,6 +75,11 @@ public class MainScene extends Scene {
         maleRadio.setToggleGroup(groupGender);
         femaleRadio.setToggleGroup(groupGender);
         nonBinaryRadio.setToggleGroup(groupGender);
+
+        //HBOX
+        HBox hBoxGen = new HBox(maleRadio,femaleRadio,nonBinaryRadio);
+        hBoxGen.setSpacing(10);
+        hBoxGen.setAlignment(Pos.BASELINE_LEFT);
 
         //languages
         javaCheckBox.setIndeterminate(false);
@@ -103,6 +110,9 @@ public class MainScene extends Scene {
         gridPane.add(femaleRadio, 2, 2);
         gridPane.add(nonBinaryRadio, 3, 2);
 
+        //add hbox to gridpane
+        gridPane.add(hBoxGen, 0, 2);
+
         gridPane.add(languagesLabel, 0, 3);
         gridPane.add(javaCheckBox, 1, 3);
         gridPane.add(cppCheckBox, 2, 3);
@@ -128,15 +138,15 @@ public class MainScene extends Scene {
 
         //NODE STYLE
         buttonRegister.setStyle("-fx-background-color:green; -fx-text-fill:white;");
-        nameLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        dobLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        genderLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        languagesLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        educationLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        locationLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
+        nameLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        dobLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        genderLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        languagesLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        educationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        locationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
 
         //setting the background color
-        gridPane.setStyle("-fx-background-color:BEIGE");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to right, beige, white)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
