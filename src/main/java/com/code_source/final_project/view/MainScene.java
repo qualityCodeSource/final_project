@@ -76,7 +76,7 @@ public class MainScene extends Scene {
         femaleRadio.setToggleGroup(groupGender);
         nonBinaryRadio.setToggleGroup(groupGender);
 
-        //HBOX
+        //HBOX gender
         HBox hBoxGen = new HBox(maleRadio,femaleRadio,nonBinaryRadio);
         hBoxGen.setSpacing(10);
         hBoxGen.setAlignment(Pos.BASELINE_LEFT);
@@ -85,6 +85,11 @@ public class MainScene extends Scene {
         javaCheckBox.setIndeterminate(false);
         cppCheckBox.setIndeterminate(false);
         pythonCheckBox.setIndeterminate(false);
+
+        //HBOX languages
+        HBox hBoxLang = new HBox(javaCheckBox,cppCheckBox,pythonCheckBox);
+        hBoxLang.setSpacing(20);
+        hBoxLang.setAlignment(Pos.BASELINE_LEFT);
 
         //education
         data.addAll("No Formal Education","Current Student", "Associate Degree", "Bachelor Degree", "Master Degree", "PhD.");
@@ -105,18 +110,17 @@ public class MainScene extends Scene {
         gridPane.add(dobLabel, 0, 1);
         gridPane.add(datePicker, 1, 1);
 
-        gridPane.add(genderLabel, 0, 2);
-        gridPane.add(maleRadio, 1, 2);
-        gridPane.add(femaleRadio, 2, 2);
-        gridPane.add(nonBinaryRadio, 3, 2);
+        //add gen label
+        gridPane.add(genderLabel,0,2);
 
-        //add hbox to gridpane
-        gridPane.add(hBoxGen, 0, 2);
+        //add gen hbox
+        gridPane.add(hBoxGen, 1, 2);
 
+        //add lang label
         gridPane.add(languagesLabel, 0, 3);
-        gridPane.add(javaCheckBox, 1, 3);
-        gridPane.add(cppCheckBox, 2, 3);
-        gridPane.add(pythonCheckBox, 3, 3);
+
+        //add lang hbox
+        gridPane.add(hBoxLang, 1,3);
 
         gridPane.add(educationLabel, 0 ,4);
         gridPane.add(edulist, 1, 4);
@@ -146,7 +150,7 @@ public class MainScene extends Scene {
         locationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
 
         //setting the background color
-        gridPane.setStyle("-fx-background-color: linear-gradient(to right, beige, white)");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to right, brown, yellow)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
