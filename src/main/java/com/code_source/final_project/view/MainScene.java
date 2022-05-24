@@ -16,42 +16,45 @@ import java.time.format.DateTimeFormatter;
 
 public class MainScene extends Scene {
     //name
-    private Label nameLabel = new Label("NAME:");
-    private TextField nameText = new TextField();
+    private final Label nameLabel = new Label("NAME:");
+    private final TextField nameText = new TextField();
 
     //DOB
-    private Label dobLabel = new Label("DATE OF BIRTH:");
-    private DatePicker datePicker = new DatePicker();
+    private final Label dobLabel = new Label("DATE OF BIRTH:");
+    private final DatePicker datePicker = new DatePicker();
 
     //Gender
-    private Label genderLabel = new Label("GENDER");
-    private ToggleGroup groupGender = new ToggleGroup();
-    private RadioButton maleRadio = new RadioButton("Male");
-    private RadioButton femaleRadio = new RadioButton("Female");
-    private RadioButton nonBinaryRadio = new RadioButton("Non-Binary");
+    private final Label genderLabel = new Label("GENDER");
+    private final ToggleGroup groupGender = new ToggleGroup();
+    private final RadioButton maleRadio = new RadioButton("Male");
+    private final RadioButton femaleRadio = new RadioButton("Female");
+    private final RadioButton nonBinaryRadio = new RadioButton("Non-Binary");
 
     //languages
-    private Label technologiesLabel = new Label("LANGUAGES:");
-    private CheckBox javaCheckBox=new CheckBox("Java");
-    private CheckBox cppCheckBox=new CheckBox("C++");
-    private CheckBox pythonCheckBox = new CheckBox("Python");
+    private final Label languagesLabel = new Label("LANGUAGES:");
+    private final CheckBox javaCheckBox=new CheckBox("Java");
+    private final CheckBox cppCheckBox=new CheckBox("C++");
+    private final CheckBox pythonCheckBox = new CheckBox("Python");
 
     //education
-    private Label educationLabel = new Label("EDUCATION:");
-    private ListView<Object> edulist = new ListView<>();
-    private ObservableList<Object> data = FXCollections.observableArrayList();
+    private final Label educationLabel = new Label("EDUCATION:");
+    private final ListView<Object> edulist = new ListView<>();
+    private final ObservableList<Object> data = FXCollections.observableArrayList();
 
     //location
-    private Label locationLabel=new Label("LOCATION:");
-    private ChoiceBox<Object> locationChoiceBox = new ChoiceBox<>();
+    private final Label locationLabel=new Label("LOCATION:");
+    private final ChoiceBox<Object> locationChoiceBox = new ChoiceBox<>();
 
     //Register Button
-    private Button buttonRegister =new Button("Register");
+    private final Button buttonRegister =new Button("Register");
+
+    //Delete Button
+    private final Button buttonDelete = new Button("Delete");
 
     //listview from binary file
-    private Controller controller = Controller.getInstance();
-    private ListView<Student> studentsLV = new ListView<>();
-    private ObservableList<Student> studentsList;
+    private final Controller controller = Controller.getInstance();
+    private final ListView<Student> studentsLV = new ListView<>();
+    private final ObservableList<Student> studentsList;
     private Student selectedStudent;
 
 
@@ -99,7 +102,7 @@ public class MainScene extends Scene {
         gridPane.add(femaleRadio, 2, 2);
         gridPane.add(nonBinaryRadio, 3, 2);
 
-        gridPane.add(technologiesLabel, 0, 3);
+        gridPane.add(languagesLabel, 0, 3);
         gridPane.add(javaCheckBox, 1, 3);
         gridPane.add(cppCheckBox, 2, 3);
         gridPane.add(pythonCheckBox, 3, 3);
@@ -114,6 +117,10 @@ public class MainScene extends Scene {
         buttonRegister.setOnAction(e -> addStudent());
         gridPane.add(buttonRegister, 2, 7);
 
+        //delete button
+        buttonDelete.setOnAction(e -> removeStudent());
+        gridPane.add(buttonDelete, 3, 7);
+
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
         gridPane.add(studentsLV, 3, 1);
@@ -123,7 +130,7 @@ public class MainScene extends Scene {
         nameLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
         dobLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
         genderLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
-        technologiesLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
+        languagesLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
         educationLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
         locationLabel.setStyle("-fx-font:normal bold 15px 'serif' ");
 
@@ -133,17 +140,35 @@ public class MainScene extends Scene {
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
 
+        //link delete to LV
+        studentsLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectStudent(newVal));
+
 
         this.setRoot(gridPane);
     }
 
+    private void selectStudent(Student newVal) {
+        selectedStudent = newVal;
+        buttonDelete.setDisable(selectedStudent == null);
+    }
+
+    private void removeStudent() {
+        studentsList.remove(selectedStudent);
+        studentsLV.refresh();
+        studentsLV.getSelectionModel().select(-1);
+    }
     private void addStudent() {
         // Read from all text fields
         try {
             String name = nameText.getText();
-            String DOB = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));;
-
-            String gender = (String) groupGender.getSelectedToggle().getUserData();
+            String DOB = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            String gender = "";
+            if(groupGender.getSelectedToggle().equals(maleRadio))
+                gender += "MALE";
+            if(groupGender.getSelectedToggle().equals(femaleRadio))
+                gender += "FEMALE";
+            if(groupGender.getSelectedToggle().equals(nonBinaryRadio))
+                gender += "NON-BINARY";
             String languages = "";
             if (javaCheckBox.isSelected())
                 languages+="JAVA ";
@@ -151,7 +176,7 @@ public class MainScene extends Scene {
                 languages+="C++ ";
             if (pythonCheckBox.isSelected())
                 languages+="Python ";
-            String education = edulist.getSelectionModel().toString();
+            String education = "";
             String location = locationChoiceBox.getSelectionModel().toString();
             studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
             studentsLV.refresh();
