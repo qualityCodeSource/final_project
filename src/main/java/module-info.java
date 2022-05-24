@@ -1,6 +1,7 @@
 module com.code_source.final_project {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
 
 
     opens com.code_source.final_project to javafx.fxml;

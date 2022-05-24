@@ -10,9 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.util.StringConverter;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 //test 1
@@ -102,7 +100,7 @@ public class MainScene extends Scene {
 
         //location
         locationChoiceBox.getItems().addAll("Community College", "State College", "University of California", "Self Taught");
-
+        locationChoiceBox.getSelectionModel().select(0);
 
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
@@ -151,12 +149,12 @@ public class MainScene extends Scene {
 
         //NODE STYLE
         buttonRegister.setStyle("-fx-background-color:green; -fx-text-fill:white;");
-        nameLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
-        dobLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
-        genderLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
-        languagesLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
-        educationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
-        locationLabel.setStyle("-fx-font:normal bold 15px 'arial' ");
+        nameLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        dobLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        genderLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        languagesLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        educationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
 
         //setting the background color
         gridPane.setStyle("-fx-background-color: linear-gradient(to top, red, yellow, green)");

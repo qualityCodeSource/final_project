@@ -83,13 +83,11 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "[" +
-                "Name:" + mName +
+        return "Name:" + mName +
                 ", DOB:" + mDOB  +
                 ", Gender:" + mGender +
                 ", Languages:" + mLanguages +
                 ", Education:" + mEducation +
-                ", Location:" + mLocation +
-                ']';
+                ", Location:" + mLocation;
     }
 }
