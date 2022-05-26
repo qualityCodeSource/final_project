@@ -48,7 +48,7 @@ public class StudentWorker extends Student
     public String toString() {
         return "Student Worker :: " +
                 "Job: " + mJob  +
-                " / Pay: " + mPay +
+                " / Pay: $" + mPay +
                 " / Name: " + mName  +
                 " / DOB: " + mDOB +
                 " / Gender: " + mGender  +
