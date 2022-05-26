@@ -58,6 +58,10 @@ public class MainScene extends Scene {
 
     //Disabled Button
     private final Button buttonDisabled = new Button("Disabled Student");
+    //Transfer Button
+    private final Button buttonTransfer = new Button("Transfer Student");
+    //Student Worker Button
+    private final Button buttonWorker = new Button("Student Worker");
 
     //listview from binary file
     private final Controller controller = Controller.getInstance();
