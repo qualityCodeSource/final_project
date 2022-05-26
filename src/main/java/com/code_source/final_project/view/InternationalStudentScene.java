@@ -72,7 +72,7 @@ public class InternationalStudentScene extends Scene {
 
     public InternationalStudentScene()
     {
-        super(new GridPane(), 850, 500);
+        super(new GridPane(), 900, 500);
         GridPane gridPane = new GridPane();
 
         gridPane.setVgap(7);
@@ -164,6 +164,8 @@ public class InternationalStudentScene extends Scene {
         languagesLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         educationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        hostFamilyLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        countryLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
 
         //setting the background color
         gridPane.setStyle("-fx-background-color: linear-gradient(to right, cyan, blue)");

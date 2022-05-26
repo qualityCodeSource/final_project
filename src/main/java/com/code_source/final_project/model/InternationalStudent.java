@@ -45,15 +45,14 @@ public class InternationalStudent extends Student{
 
     @Override
     public String toString() {
-        return "InternationalStudent{" +
-                "mCountryOfOrigin='" + mCountryOfOrigin + '\'' +
-                ", mHostFamily=" + mHostFamily +
-                ", mName='" + mName + '\'' +
-                ", mDOB='" + mDOB + '\'' +
-                ", mGender='" + mGender + '\'' +
-                ", mLanguages='" + mLanguages + '\'' +
-                ", mEducation='" + mEducation + '\'' +
-                ", mLocation='" + mLocation + '\'' +
-                '}';
+        return "*InternationalStudent*" +
+                " Name=" + mName +
+                ", DOB=" + mDOB +
+                ", Gender=" + mGender +
+                ", Languages=" + mLanguages +
+                ", Education=" + mEducation +
+                ", Location=" + mLocation +
+                ", CountryOfOrigin=" + mCountryOfOrigin +
+                ", HostFamily=" + mHostFamily;
     }
 }

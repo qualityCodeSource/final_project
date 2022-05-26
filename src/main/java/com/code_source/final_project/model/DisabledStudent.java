@@ -45,15 +45,14 @@ public class DisabledStudent extends Student{
 
     @Override
     public String toString() {
-        return "DisabledStudent{" +
-                "mDisability='" + mDisability + '\'' +
-                ", mAssistanceNeeded=" + mAssistanceNeeded +
-                ", mName='" + mName + '\'' +
-                ", mDOB='" + mDOB + '\'' +
-                ", mGender='" + mGender + '\'' +
-                ", mLanguages='" + mLanguages + '\'' +
-                ", mEducation='" + mEducation + '\'' +
-                ", mLocation='" + mLocation + '\'' +
-                '}';
+        return "*DisabledStudent*" +
+                " Name=" + mName +
+                ", DOB=" + mDOB +
+                ", Gender=" + mGender +
+                ", Languages=" + mLanguages +
+                ", Education=" + mEducation +
+                ", Location=" + mLocation +
+                ", Disability='" + mDisability +
+                ", AssistanceNeeded=" + mAssistanceNeeded;
     }
 }
