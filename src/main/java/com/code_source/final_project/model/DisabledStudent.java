@@ -52,7 +52,7 @@ public class DisabledStudent extends Student{
                 ", Languages=" + mLanguages +
                 ", Education=" + mEducation +
                 ", Location=" + mLocation +
-                ", Disability='" + mDisability +
+                ", Disability=" + mDisability +
                 ", AssistanceNeeded=" + mAssistanceNeeded;
     }
 }

@@ -26,7 +26,7 @@ public class InternationalStudentScene extends Scene {
     private final DatePicker datePicker = new DatePicker();
 
     //Gender
-    private final Label genderLabel = new Label("GENDER");
+    private final Label genderLabel = new Label("GENDER:");
     private final ToggleGroup groupGender = new ToggleGroup();
     private final RadioButton maleRadio = new RadioButton("Male");
     private final RadioButton femaleRadio = new RadioButton("Female");
