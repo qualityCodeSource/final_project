@@ -14,20 +14,20 @@ public class StudentWorker extends Student
         this.mPay = pay;
     }
 
-    public String getmJob() {
+    public String getJob() {
         return mJob;
     }
 
-    public void setmJob(String mJob) {
-        this.mJob = mJob;
+    public void setJob(String job) {
+        this.mJob = job;
     }
 
-    public double getmPay() {
+    public double getPay() {
         return mPay;
     }
 
-    public void setmPay(double mPay) {
-        this.mPay = mPay;
+    public void setmPay(double pay) {
+        this.mPay = pay;
     }
 
     @Override
@@ -46,15 +46,15 @@ public class StudentWorker extends Student
 
     @Override
     public String toString() {
-        return "Student Worker{" +
-                "Job='" + mJob + '\'' +
-                ", Pay=" + mPay +
-                ", Name='" + mName + '\'' +
-                ", DOB='" + mDOB + '\'' +
-                ", Gender='" + mGender + '\'' +
-                ", Languages='" + mLanguages + '\'' +
-                ", Education='" + mEducation + '\'' +
-                ", Location='" + mLocation + '\'' +
-                '}';
+        return "Student Worker :: " +
+                "Job: " + mJob  +
+                " / Pay: " + mPay +
+                " / Name: " + mName  +
+                " / DOB: " + mDOB +
+                " / Gender: " + mGender  +
+                " / Languages: " + mLanguages  +
+                " / Education: " + mEducation  +
+                " / Location: " + mLocation  +
+                '|';
     }
 }

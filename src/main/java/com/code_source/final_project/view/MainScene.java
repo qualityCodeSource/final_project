@@ -8,15 +8,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.time.format.DateTimeFormatter;
 
 public class MainScene extends Scene {
-    //title text
-    private final Label titleLabel = new Label("SUPER DOPE REGISTRATION FORM 3000");
-
+    //img view
+    private ImageView studentIV = new ImageView();
     //name
     private final Label nameLabel = new Label("NAME:");
     private final TextField nameText = new TextField();
@@ -71,7 +72,7 @@ public class MainScene extends Scene {
 
 
     public MainScene() {
-        super(new GridPane(), 1250 ,750);
+        super(new GridPane(), 1300 ,850);
 
         //gridpane
         GridPane gridPane=new GridPane();
@@ -80,6 +81,13 @@ public class MainScene extends Scene {
         gridPane.setHgap(5);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
+
+        studentIV.setImage(new Image("PhotoFunia-1653605721.jpg"));
+        studentIV.setFitWidth(350);
+        studentIV.setFitHeight(250);
+
+        gridPane.add(studentIV,2,0);
+        gridPane.setAlignment(Pos.BASELINE_CENTER);
 
         //gender
         maleRadio.setToggleGroup(groupGender);
@@ -114,7 +122,7 @@ public class MainScene extends Scene {
         studentsLV.setPrefSize(200, 300);
 
         //title label test
-        gridPane.add(titleLabel,0,0);
+        //gridPane.add(titleLabel,0,0);
 
         //arranging all the nodes in the grid
         gridPane.add(nameLabel, 1, 1);

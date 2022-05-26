@@ -2,6 +2,7 @@ package com.code_source.final_project.view;
 
 import com.code_source.final_project.controller.Controller;
 import com.code_source.final_project.model.Student;
+import com.code_source.final_project.model.TransferStudent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -47,7 +48,7 @@ public class TransferStudentScene extends Scene
     private Student selectedStudent;
     public TransferStudentScene()
     {
-        super(new GridPane(), 1000, 1000);
+        super(new GridPane(), 900, 500);
         GridPane gridPane = new GridPane();
 
         buttonBack.setOnAction(e -> ViewNavigator.loadScene("Registration Form", new MainScene()));
@@ -115,6 +116,10 @@ public class TransferStudentScene extends Scene
         gridPane.add(transferSchoolLabel,1,7);
         gridPane.add(transferSchoolTxt,2,7);
 
+        //credits stuff
+        gridPane.add(creditsLabel,1,8);
+        gridPane.add(creditsTxt,2,8);
+
         //register button
         buttonRegister.setOnAction(e -> addStudent());
         gridPane.add(buttonRegister, 4, 7);
@@ -137,8 +142,9 @@ public class TransferStudentScene extends Scene
         educationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         transferSchoolLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        creditsLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         //setting the background color
-        gridPane.setStyle("-fx-background-color: linear-gradient(to top, red, yellow, green)");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to right, orange, goldenrod, deeppink)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
@@ -178,7 +184,9 @@ public class TransferStudentScene extends Scene
                 languages+="[Python]";
             String education = edulist.getSelectionModel().getSelectedItems().toString();
             String location = "["+locationChoiceBox.getSelectionModel().getSelectedItem().toString()+"]";
-            studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
+            String transferSchool = "["+transferSchoolTxt.getText()+"]";
+            int numCredits = Integer.parseInt(creditsTxt.getText());
+            studentsList.add(0, new TransferStudent(name, DOB, gender, languages, education, location, transferSchool, numCredits));
             studentsLV.refresh();
         }catch(NullPointerException e){}
     }

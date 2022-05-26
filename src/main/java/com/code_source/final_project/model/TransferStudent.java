@@ -14,20 +14,20 @@ public class TransferStudent extends Student
         this.mNumCredits = numCredits;
     }
 
-    public String getmTransferSchool() {
+    public String getTransferSchool() {
         return mTransferSchool;
     }
 
-    public void setmTransferSchool(String mTransferSchool) {
-        this.mTransferSchool = mTransferSchool;
+    public void setTransferSchool(String transferSchool) {
+        this.mTransferSchool = transferSchool;
     }
 
-    public int getmNumCredits() {
+    public int getNumCredits() {
         return mNumCredits;
     }
 
-    public void setmNumCredits(int mNumCredits) {
-        this.mNumCredits = mNumCredits;
+    public void setNumCredits(int numCredits) {
+        this.mNumCredits = numCredits;
     }
 
     @Override
@@ -46,15 +46,15 @@ public class TransferStudent extends Student
 
     @Override
     public String toString() {
-        return "Transfer Student{" +
-                "Transfer School='" + mTransferSchool + '\'' +
-                ", Num Credits=" + mNumCredits +
-                ", Name='" + mName + '\'' +
-                ", DOB='" + mDOB + '\'' +
-                ", Gender='" + mGender + '\'' +
-                ", Languages='" + mLanguages + '\'' +
-                ", Education='" + mEducation + '\'' +
-                ", Location='" + mLocation + '\'' +
-                '}';
+        return "Transfer Student :: " +
+                "Transfer School: " + mTransferSchool +
+                " / Num Credits: " + mNumCredits +
+                " / Name: " + mName  +
+                " / DOB: " + mDOB  +
+                " / Gender: " + mGender  +
+                " / Languages: " + mLanguages  +
+                " / Education: " + mEducation  +
+                " / Location: " + mLocation  +
+                '|';
     }
 }

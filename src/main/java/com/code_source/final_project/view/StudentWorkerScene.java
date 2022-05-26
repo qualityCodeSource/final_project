@@ -2,6 +2,7 @@ package com.code_source.final_project.view;
 
 import com.code_source.final_project.controller.Controller;
 import com.code_source.final_project.model.Student;
+import com.code_source.final_project.model.StudentWorker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,35 +17,30 @@ import java.time.format.DateTimeFormatter;
 public class StudentWorkerScene extends Scene
 {
 
-    //name
+    private final Label jobLabel = new Label("JOB:");
+    private final TextField jobTxt = new TextField();
+    private final Label payLabel = new Label("PAY:");
+    private final TextField payTxt = new TextField();
     private final Label nameLabel = new Label("NAME:");
     private final TextField nameText = new TextField();
-    //DOB
     private final Label dobLabel = new Label("DATE OF BIRTH:");
     private final DatePicker datePicker = new DatePicker();
-    //Gender
-    private final Label genderLabel = new Label("GENDER");
+    private final Label genderLabel = new Label("GENDER:");
     private final ToggleGroup groupGender = new ToggleGroup();
     private final RadioButton maleRadio = new RadioButton("Male");
     private final RadioButton femaleRadio = new RadioButton("Female");
     private final RadioButton nonBinaryRadio = new RadioButton("Non-Binary");
-    //languages
     private final Label languagesLabel = new Label("LANGUAGES:");
     private final CheckBox javaCheckBox=new CheckBox("Java");
     private final CheckBox cppCheckBox=new CheckBox("C++");
     private final CheckBox pythonCheckBox = new CheckBox("Python");
-    //education
     private final Label educationLabel = new Label("EDUCATION:");
     private final ListView<String> edulist = new ListView<>();
     private final ObservableList<String> data = FXCollections.observableArrayList();
-    //location
     private final Label locationLabel=new Label("LOCATION:");
     private final ChoiceBox<Object> locationChoiceBox = new ChoiceBox<>();
-    //Register Button
     private final Button buttonRegister =new Button("Register");
-    //Delete Button
     private final Button buttonDelete = new Button("Delete");
-    //listview from binary file
     private final Controller controller = Controller.getInstance();
     private final ListView<Student> studentsLV = new ListView<>();
     private final ObservableList<Student> studentsList;
@@ -53,7 +49,7 @@ public class StudentWorkerScene extends Scene
 
     public StudentWorkerScene()
     {
-        super(new GridPane(), 1000, 1000);
+        super(new GridPane(), 900, 500);
         GridPane gridPane = new GridPane();
 
         buttonBack.setOnAction(e -> ViewNavigator.loadScene("Registration Form", new MainScene()));
@@ -117,6 +113,14 @@ public class StudentWorkerScene extends Scene
         gridPane.add(locationLabel, 1, 6);
         gridPane.add(locationChoiceBox, 2, 6);
 
+        //job txt
+        gridPane.add(jobLabel,1,7);
+        gridPane.add(jobTxt,2,7);
+
+        //pay txt
+        gridPane.add(payLabel,1,8);
+        gridPane.add(payTxt,2,8);
+
         //register button
         buttonRegister.setOnAction(e -> addStudent());
         gridPane.add(buttonRegister, 4, 7);
@@ -138,6 +142,8 @@ public class StudentWorkerScene extends Scene
         languagesLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         educationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        jobLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        payLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
 
         //setting the background color
         gridPane.setStyle("-fx-background-color: linear-gradient(to right, crimson, coral, brown)");
@@ -181,9 +187,11 @@ public class StudentWorkerScene extends Scene
                 languages+="[C++]";
             if (pythonCheckBox.isSelected())
                 languages+="[Python]";
+            String job = "["+jobTxt.getText()+"]";
+            double pay = Double.parseDouble(payTxt.getText());
             String education = edulist.getSelectionModel().getSelectedItems().toString();
             String location = "["+locationChoiceBox.getSelectionModel().getSelectedItem().toString()+"]";
-            studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
+            studentsList.add(0, new StudentWorker(name, DOB, gender, languages, education, location, job, pay));
             studentsLV.refresh();
         }catch(NullPointerException e){}
     }
