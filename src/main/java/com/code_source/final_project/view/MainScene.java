@@ -152,6 +152,14 @@ public class MainScene extends Scene {
         buttonDisabled.setOnAction(e -> ViewNavigator.loadScene("Disabled Student", new DisabStudentScene()));
         gridPane.add(buttonDisabled, 1, 9);
 
+        //Transfer Button
+        buttonDisabled.setOnAction(e -> ViewNavigator.loadScene("Transfer Student", new TransferStudentScene()));
+        gridPane.add(buttonTransfer,2,9);
+
+        //Student Worker Button
+        buttonDisabled.setOnAction(e -> ViewNavigator.loadScene("Student Worker", new StudentWorkerScene()));
+        gridPane.add(buttonWorker,3,9);
+
         //listview from binary file
         studentsLV.setPrefSize(350, 300);
         gridPane.add(studentsLV, 4, 2);
