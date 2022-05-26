@@ -141,7 +141,7 @@ public class MainScene extends Scene {
         gridPane.add(buttonDelete, 4, 8);
 
         //International Student button
-        //buttonInternational.setOnAction(e -> );
+        buttonInternational.setOnAction(e -> ViewNavigator.loadScene("International Student", new InternationalStudentScene()));
         gridPane.add(buttonInternational, 0, 9);
 
         //Disabled Student button
