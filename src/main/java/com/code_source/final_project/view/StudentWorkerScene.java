@@ -140,7 +140,7 @@ public class StudentWorkerScene extends Scene
         locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
 
         //setting the background color
-        gridPane.setStyle("-fx-background-color: linear-gradient(to top, red, yellow, green)");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to right, crimson, coral, brown)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
