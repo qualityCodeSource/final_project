@@ -13,7 +13,6 @@ import javafx.scene.layout.HBox;
 
 import java.time.format.DateTimeFormatter;
 
-//test 1
 public class MainScene extends Scene {
     //title text
     private final Label titleLabel = new Label("SUPER DOPE REGISTRATION FORM 3000");
@@ -54,6 +53,12 @@ public class MainScene extends Scene {
     //Delete Button
     private final Button buttonDelete = new Button("Delete");
 
+    //International Button
+    private final Button buttonInternational = new Button("International Student");
+
+    //Disabled Button
+    private final Button buttonDisabled = new Button("Disabled Student");
+
     //listview from binary file
     private final Controller controller = Controller.getInstance();
     private final ListView<Student> studentsLV = new ListView<>();
@@ -91,7 +96,6 @@ public class MainScene extends Scene {
         HBox hBoxLang = new HBox(javaCheckBox,cppCheckBox,pythonCheckBox);
         hBoxLang.setSpacing(20);
         hBoxLang.setAlignment(Pos.BASELINE_LEFT);
-        //commit change test again 2
 
         //education
         data.addAll("No Formal Education","Current Student", "Associate Degree", "Bachelor Degree", "Master Degree", "PhD.");
@@ -107,48 +111,50 @@ public class MainScene extends Scene {
 
         //title label test
         gridPane.add(titleLabel,0,0);
-        //arranging all the nodes in the grid
-        //0,0
-        gridPane.add(nameLabel, 1, 1);
-        //1,0
-        gridPane.add(nameText, 2, 1);
 
-        //0,1  1,1
+        //arranging all the nodes in the grid
+        gridPane.add(nameLabel, 1, 1);
+        gridPane.add(nameText, 2, 1);
         gridPane.add(dobLabel, 1, 2);
         gridPane.add(datePicker, 2, 2);
-
-        //add gen label  0,2
         gridPane.add(genderLabel,1,3);
 
-        //add gen hbox   1,2
         gridPane.add(hBoxGen, 2, 3);
 
-        //add lang label   0,3
         gridPane.add(languagesLabel, 1, 4);
 
-        //add lang hbox    1,3
+        //add lang hbox
         gridPane.add(hBoxLang, 2,4);
-        //0,4  1,4
+
         gridPane.add(educationLabel, 1 ,5);
         gridPane.add(edulist, 2, 5);
-        //0,5   1,5
+
         gridPane.add(locationLabel, 1, 6);
         gridPane.add(locationChoiceBox, 2, 6);
 
-        //register button   2,7
+        //register button
         buttonRegister.setOnAction(e -> addStudent());
-        gridPane.add(buttonRegister, 3, 8);
+        gridPane.add(buttonRegister, 4, 7);
 
-        //delete button    3,7
+        //delete button
         buttonDelete.setOnAction(e -> removeStudent());
         gridPane.add(buttonDelete, 4, 8);
 
-        //listview from binary file    3,1
+        //International Student button
+        //buttonInternational.setOnAction(e -> );
+        gridPane.add(buttonInternational, 0, 9);
+
+        //Disabled Student button
+        //buttonDisabled.setOnAction(e -> );
+        gridPane.add(buttonDisabled, 1, 9);
+
+        //listview from binary file
         studentsLV.setPrefSize(350, 300);
         gridPane.add(studentsLV, 4, 2);
 
         //NODE STYLE
         buttonRegister.setStyle("-fx-background-color:green; -fx-text-fill:white;");
+        buttonDelete.setStyle("-fx-background-color:red; -fx-text-fill:white;");
         nameLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         dobLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         genderLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
@@ -180,10 +186,9 @@ public class MainScene extends Scene {
         studentsLV.getSelectionModel().select(-1);
     }
     private void addStudent() {
-        // Read from all text fields
         try {
-            String name = nameText.getText();
-            String DOB = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            String name = "["+nameText.getText()+"]";
+            String DOB = "["+datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))+"]";
             String gender = "";
             if(groupGender.getSelectedToggle().equals(maleRadio))
                 gender += "[MALE]";
@@ -199,7 +204,7 @@ public class MainScene extends Scene {
             if (pythonCheckBox.isSelected())
                 languages+="[Python]";
             String education = edulist.getSelectionModel().getSelectedItems().toString();
-            String location = locationChoiceBox.getSelectionModel().getSelectedItem().toString();
+            String location = "["+locationChoiceBox.getSelectionModel().getSelectedItem().toString()+"]";
             studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
             studentsLV.refresh();
         }catch(NullPointerException e){}

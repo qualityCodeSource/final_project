@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Student implements Serializable {
-    private String mName;
-    private String mDOB;
-    private String mGender;
-    private String mLanguages;
-    private String mEducation;
-    private String mLocation;
+    protected String mName;
+    protected String mDOB;
+    protected String mGender;
+    protected String mLanguages;
+    protected String mEducation;
+    protected String mLocation;
 
     public Student(String name, String DOB, String gender, String languages, String education, String location) {
         mName = name;
