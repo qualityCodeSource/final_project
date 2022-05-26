@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class DisabledStudent extends Student{
 
-    String mDisability;
-    boolean mAssistanceNeeded;
+    private String mDisability;
+    private boolean mAssistanceNeeded;
 
     public DisabledStudent(String name, String DOB, String gender, String languages, String education, String location, String disability, boolean assistanceNeeded) {
         super(name, DOB, gender, languages, education, location);
