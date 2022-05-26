@@ -1,6 +1,7 @@
 package com.code_source.final_project.view;
 
 import com.code_source.final_project.controller.Controller;
+import com.code_source.final_project.model.InternationalStudent;
 import com.code_source.final_project.model.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -94,6 +95,10 @@ public class InternationalStudentScene extends Scene {
         cppCheckBox.setIndeterminate(false);
         pythonCheckBox.setIndeterminate(false);
 
+        //host family
+        yes.setToggleGroup(hostFamilyGroup);
+        no.setToggleGroup(hostFamilyGroup);
+
         //HBOX languages
         HBox hBoxLang = new HBox(javaCheckBox,cppCheckBox,pythonCheckBox);
         hBoxLang.setSpacing(20);
@@ -117,6 +122,13 @@ public class InternationalStudentScene extends Scene {
         gridPane.add(dobLabel, 1, 2);
         gridPane.add(datePicker, 2, 2);
         gridPane.add(genderLabel,1,3);
+
+        gridPane.add(countryLabel, 1, 7);
+        gridPane.add(countryText, 2, 7);
+
+        gridPane.add(hostFamilyLabel, 1, 8);
+        gridPane.add(yes, 2, 8);
+        gridPane.add(no, 2, 9);
 
         gridPane.add(hBoxGen, 2, 3);
 
@@ -190,6 +202,8 @@ public class InternationalStudentScene extends Scene {
                 gender += "[FEMALE]";
             if(groupGender.getSelectedToggle().equals(nonBinaryRadio))
                 gender += "[NON-BINARY]";
+            String country = "["+countryText.getText()+"]";
+            boolean host = (yes.isSelected());
             String languages = "";
             if (javaCheckBox.isSelected())
                 languages+="[JAVA]";
@@ -199,7 +213,7 @@ public class InternationalStudentScene extends Scene {
                 languages+="[Python]";
             String education = edulist.getSelectionModel().getSelectedItems().toString();
             String location = "["+locationChoiceBox.getSelectionModel().getSelectedItem().toString()+"]";
-            studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
+            studentsList.add(0, new InternationalStudent(name, DOB, gender, languages, education, location, country, host));
             studentsLV.refresh();
         }catch(NullPointerException e){}
     }
