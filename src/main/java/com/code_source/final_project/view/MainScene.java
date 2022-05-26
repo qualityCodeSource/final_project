@@ -71,7 +71,7 @@ public class MainScene extends Scene {
 
 
     public MainScene() {
-        super(new GridPane(), 1250 ,1250);
+        super(new GridPane(), 1050 ,850);
 
         //gridpane
         GridPane gridPane=new GridPane();
