@@ -149,7 +149,7 @@ public class MainScene extends Scene {
         gridPane.add(buttonInternational, 0, 9);
 
         //Disabled Student button
-        //buttonDisabled.setOnAction(e -> );
+        buttonDisabled.setOnAction(e -> ViewNavigator.loadScene("Disabled Student", new DisabStudentScene()));
         gridPane.add(buttonDisabled, 1, 9);
 
         //listview from binary file

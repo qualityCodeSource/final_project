@@ -10,7 +10,7 @@ public class InternationalStudentScene extends Scene {
 
     public InternationalStudentScene()
     {
-        super(new GridPane(), 500, 500);
+        super(new GridPane(), 800, 500);
         GridPane gridPane = new GridPane();
 
         buttonBack.setOnAction(e -> ViewNavigator.loadScene("Registration Form", new MainScene()));
