@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class InternationalStudent extends Student{
 
-    String mCountryOfOrigin;
-    boolean mHostFamily;
+    private String mCountryOfOrigin;
+    private boolean mHostFamily;
 
     public InternationalStudent(String name, String DOB, String gender, String languages, String education, String location, String countryOfOrigin, boolean hostFamily) {
         super(name, DOB, gender, languages, education, location);
