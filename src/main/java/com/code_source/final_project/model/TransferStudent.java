@@ -1,7 +1,7 @@
 package com.code_source.final_project.model;
 
 import java.util.Objects;
-
+//testcommit
 public class TransferStudent extends Student
 {
     private String mTransferSchool;
