@@ -4,11 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-public class StudentWorker extends Scene
+public class StudentWorkerScene extends Scene
 {
     Button buttonBack = new Button("Back");
 
-    public StudentWorker()
+    public StudentWorkerScene()
     {
         super(new GridPane(), 500, 500);
         GridPane gridPane = new GridPane();
