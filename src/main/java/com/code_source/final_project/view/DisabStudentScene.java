@@ -1,8 +1,7 @@
-
-//FINAL VERSION FOR PUSH, THIS SHOULD BE HERE
 package com.code_source.final_project.view;
 
 import com.code_source.final_project.controller.Controller;
+import com.code_source.final_project.model.DisabledStudent;
 import com.code_source.final_project.model.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,16 +9,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.time.format.DateTimeFormatter;
 
-public class MainScene extends Scene {
-    //img view
-    private ImageView studentIV = new ImageView();
+public class DisabStudentScene extends Scene {
+
+    private Button buttonBack = new Button("BACK");
     //name
     private final Label nameLabel = new Label("NAME:");
     private final TextField nameText = new TextField();
@@ -29,7 +26,7 @@ public class MainScene extends Scene {
     private final DatePicker datePicker = new DatePicker();
 
     //Gender
-    private final Label genderLabel = new Label("GENDER");
+    private final Label genderLabel = new Label("GENDER:");
     private final ToggleGroup groupGender = new ToggleGroup();
     private final RadioButton maleRadio = new RadioButton("Male");
     private final RadioButton femaleRadio = new RadioButton("Female");
@@ -50,21 +47,21 @@ public class MainScene extends Scene {
     private final Label locationLabel=new Label("LOCATION:");
     private final ChoiceBox<Object> locationChoiceBox = new ChoiceBox<>();
 
+    //Disability
+    private final Label disabilityLabel = new Label("DISABILITY:");
+    private final TextField disabilityText = new TextField();
+
+    //Host Family
+    private final Label assistanceLabel = new Label("ASSISTANCE NEEDED?");
+    private final ToggleGroup assistanceGroup = new ToggleGroup();
+    private final RadioButton no = new RadioButton("NO");
+    private final RadioButton yes = new RadioButton("YES");
+
     //Register Button
     private final Button buttonRegister =new Button("Register");
 
     //Delete Button
     private final Button buttonDelete = new Button("Delete");
-
-    //International Button
-    private final Button buttonInternational = new Button("International Student");
-
-    //Disabled Button
-    private final Button buttonDisabled = new Button("Disabled Student");
-    //Transfer Button
-    private final Button buttonTransfer = new Button("Transfer Student");
-    //Student Worker Button
-    private final Button buttonWorker = new Button("Student Worker");
 
     //listview from binary file
     private final Controller controller = Controller.getInstance();
@@ -73,23 +70,15 @@ public class MainScene extends Scene {
     private Student selectedStudent;
 
 
-    public MainScene() {
-        super(new GridPane(), 1300 ,850);
-
-        //gridpane
-        GridPane gridPane=new GridPane();
+    public DisabStudentScene()
+    {
+        super(new GridPane(), 900, 500);
+        GridPane gridPane = new GridPane();
 
         gridPane.setVgap(7);
         gridPane.setHgap(5);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-        gridPane.setAlignment(Pos.CENTER);
-
-        studentIV.setImage(new Image("PhotoFunia-1653605721.jpg"));
-        studentIV.setFitWidth(350);
-        studentIV.setFitHeight(250);
-
-        gridPane.add(studentIV,2,0);
-        gridPane.setAlignment(Pos.BASELINE_CENTER);
+        gridPane.setAlignment(Pos.BASELINE_LEFT);
 
         //gender
         maleRadio.setToggleGroup(groupGender);
@@ -105,6 +94,10 @@ public class MainScene extends Scene {
         javaCheckBox.setIndeterminate(false);
         cppCheckBox.setIndeterminate(false);
         pythonCheckBox.setIndeterminate(false);
+
+        //host family
+        yes.setToggleGroup(assistanceGroup);
+        no.setToggleGroup(assistanceGroup);
 
         //HBOX languages
         HBox hBoxLang = new HBox(javaCheckBox,cppCheckBox,pythonCheckBox);
@@ -123,15 +116,19 @@ public class MainScene extends Scene {
         //listview from binary file
         studentsLV.setPrefSize(200, 300);
 
-        //title label test
-        //gridPane.add(titleLabel,0,0);
-
         //arranging all the nodes in the grid
         gridPane.add(nameLabel, 1, 1);
         gridPane.add(nameText, 2, 1);
         gridPane.add(dobLabel, 1, 2);
         gridPane.add(datePicker, 2, 2);
         gridPane.add(genderLabel,1,3);
+
+        gridPane.add(disabilityLabel, 1, 7);
+        gridPane.add(disabilityText, 2, 7);
+
+        gridPane.add(assistanceLabel, 1, 8);
+        gridPane.add(yes, 2, 8);
+        gridPane.add(no, 2, 9);
 
         gridPane.add(hBoxGen, 2, 3);
 
@@ -154,22 +151,6 @@ public class MainScene extends Scene {
         buttonDelete.setOnAction(e -> removeStudent());
         gridPane.add(buttonDelete, 4, 8);
 
-        //International Student button
-        buttonInternational.setOnAction(e -> ViewNavigator.loadScene("International Student", new InternationalStudentScene()));
-        gridPane.add(buttonInternational, 0, 9);
-
-        //Disabled Student button
-        buttonDisabled.setOnAction(e -> ViewNavigator.loadScene("Disabled Student", new DisabStudentScene()));
-        gridPane.add(buttonDisabled, 1, 9);
-
-        //Transfer Button
-        buttonTransfer.setOnAction(e -> ViewNavigator.loadScene("Transfer Student", new TransferStudentScene()));
-        gridPane.add(buttonTransfer,2,9);
-
-        //Student Worker Button
-        buttonWorker.setOnAction(e -> ViewNavigator.loadScene("Student Worker", new StudentWorkerScene()));
-        gridPane.add(buttonWorker,3,9);
-
         //listview from binary file
         studentsLV.setPrefSize(350, 300);
         gridPane.add(studentsLV, 4, 2);
@@ -183,20 +164,25 @@ public class MainScene extends Scene {
         languagesLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         educationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
         locationLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        disabilityLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
+        assistanceLabel.setStyle("-fx-font:normal bold 20px 'arial' ");
 
         //setting the background color
-        gridPane.setStyle("-fx-background-color: linear-gradient(to top, red, yellow, green)");
+        gridPane.setStyle("-fx-background-color: linear-gradient(to right, mediumspringgreen, mediumorchid)");
 
         studentsList = controller.getAllStudents();
         studentsLV.setItems(studentsList);
 
-        //link delete to LV
         studentsLV.getSelectionModel().selectedItemProperty().addListener((obsVal, oldVal, newVal) -> selectStudent(newVal));
 
 
-        this.setRoot(gridPane);
-    }
+        buttonBack.setOnAction(e -> ViewNavigator.loadScene("Registration Form", new MainScene()));
 
+        gridPane.add(buttonBack, 5, 1);
+
+        this.setRoot(gridPane);
+
+    }
     private void selectStudent(Student newVal) {
         selectedStudent = newVal;
         buttonDelete.setDisable(selectedStudent == null);
@@ -218,6 +204,8 @@ public class MainScene extends Scene {
                 gender += "[FEMALE]";
             if(groupGender.getSelectedToggle().equals(nonBinaryRadio))
                 gender += "[NON-BINARY]";
+            String disability = "["+disabilityText.getText()+"]";
+            boolean assistance = (yes.isSelected());
             String languages = "";
             if (javaCheckBox.isSelected())
                 languages+="[JAVA]";
@@ -227,7 +215,7 @@ public class MainScene extends Scene {
                 languages+="[Python]";
             String education = edulist.getSelectionModel().getSelectedItems().toString();
             String location = "["+locationChoiceBox.getSelectionModel().getSelectedItem().toString()+"]";
-            studentsList.add(0, new Student(name, DOB, gender, languages, education, location));
+            studentsList.add(0, new DisabledStudent(name, DOB, gender, languages, education, location, disability, assistance));
             studentsLV.refresh();
         }catch(NullPointerException e){}
     }
@@ -235,6 +223,4 @@ public class MainScene extends Scene {
     private void updateDisplay() {
         studentsLV.refresh();
     }
-
-
 }

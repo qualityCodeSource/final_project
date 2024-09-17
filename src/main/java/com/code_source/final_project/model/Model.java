@@ -2,20 +2,20 @@ package com.code_source.final_project.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 
 import java.io.*;
 import java.util.Arrays;
 
 public class Model {
 
-    public static final String BINARY_FILE = "students.dat";
-
+    public static final String BINARY_FILE = "Students.dat";
 
     public static boolean binaryFileHasData()
     {
         File binaryFile = new File(BINARY_FILE);
         // An empty file is 4 bytes
-        return (binaryFile.exists() && binaryFile.length() >= 4L);
+        return (binaryFile.exists() && binaryFile.length() >= 5L);
 
     }
 
@@ -39,7 +39,7 @@ public class Model {
     public static boolean writeDataToBinaryFile(ObservableList<Student> allStudentsList)
     {
         Student[] array = new Student[allStudentsList.size()];
-        // Lets copy all the list data into the array
+        // Let's copy all the list data into the array
         for (int i = 0; i < array.length; i++) {
             array[i] = allStudentsList.get(i);
         }
@@ -54,4 +54,5 @@ public class Model {
         }
         return true;
     }
+
 }
